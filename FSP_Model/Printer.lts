@@ -1,2 +1,7 @@
 
-const max_sheet = 3
+const MAX_SHEETS = 3
+PRINTER(CURRENT_SHEETS = 3) = PRINT[CURRENT_SHEETS],
+PRINT[sheets : 0..MAX_SHEETS] = (
+	when (sheets > 0) getLock -> print[1..MAX_SHEETS] -> release -> PRINT[sheets - 1] |
+	when (sheets == 0) empty -> getLock -> refill -> PRINT[MAX_SHEETS] ).
+
