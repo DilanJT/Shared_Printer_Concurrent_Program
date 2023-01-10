@@ -1,0 +1,9 @@
+
+TECHNICIAN(NUM_DOCS = 3) = (out_of_paper -> lock -> REFILL[0]),
+REFILL[r : 0..NUM_DOCS] = (
+	when(r < NUM_DOCS) refill[r] -> REFILL[r + 1]|
+	when(r == NUM_DOCS) releaseLock -> TECHNICIAN).
+
+
+
+TECHNICIAN1 = (out_of_paper -> getLock -> refill -> releaseLock -> TECHNICIAN1).
