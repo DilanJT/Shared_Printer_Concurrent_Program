@@ -17,7 +17,12 @@ public class LaserPrinter implements ServicePrinter{
 
     @Override
     public void printDocument(Document document) {
-
+        int numPages = document.getNumberOfPages();
+        // Assuming it can print a 10 page doc from bother toner and the paper level greater than 10
+        if(numPages < paperLevel & numPages < tonerLevel) {
+            paperLevel = this.paperLevel - numPages;
+            tonerLevel = this.tonerLevel - numPages;
+        }
     }
 
     @Override
