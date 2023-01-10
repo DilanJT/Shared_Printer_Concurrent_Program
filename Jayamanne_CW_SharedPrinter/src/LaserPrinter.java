@@ -16,7 +16,7 @@ public class LaserPrinter implements ServicePrinter{
     }
 
     @Override
-    public void printDocument(Document document) {
+    public synchronized void printDocument(Document document) {
         int numPages = document.getNumberOfPages();
         // Assuming it can print a 10 page doc from bother toner and the paper level greater than 10
         if(numPages < paperLevel & numPages < tonerLevel) {
@@ -27,12 +27,30 @@ public class LaserPrinter implements ServicePrinter{
 
     @Override
     public void replaceTonerCartridge() {
-
+        if(this.tonerLevel < Minimum_Toner_Level) {
+            this.tonerLevel = Full_Toner_Level;
+        }else {
+            try {
+                wait(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
     public void refillPaper() {
-
+        // TODO : check for the divisibility by 50 from the paperLevel
+        int tempPaperLevel = this.paperLevel + SheetsPerPack;
+        if(tempPaperLevel > Full_Paper_Tray) {
+            try {
+                wait(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }else {
+            paperLevel = this.paperLevel + SheetsPerPack;
+        }
     }
 
     @Override
