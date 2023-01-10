@@ -3,9 +3,9 @@ public class TonerTechnician extends Thread{
     ServicePrinter tonerTechPrinter;
     String name;
 
-    public TonerTechnician(ThreadGroup threadGroup, ServicePrinter printer, String name) {
+    public TonerTechnician(String name, ServicePrinter printer, ThreadGroup threadGroup) {
         // todo: check if the name can be passed to the super class name
-        super();
+        super(threadGroup, name);
         this.tonerTechPrinter = printer;
         //TODO: recheck with the "technician" thread group
         this.tonerTechThreadGroup = threadGroup;

@@ -2,12 +2,12 @@ public class LaserPrinter implements ServicePrinter{
 
     // TODO: recheck with the explanation related to document
 
-    private final String printerID;
+    private String printerID;
     private int paperLevel;
     private int tonerLevel;
     private int documentsPrinted;
 
-    private boolean eligibleToRefill;
+    //private boolean eligibleToRefill;
     public LaserPrinter(String printerID, int paperLevel, int tonerLevel, int documentsPrinted){
         this.printerID = printerID;
         this.paperLevel = paperLevel;
@@ -15,15 +15,15 @@ public class LaserPrinter implements ServicePrinter{
         this.documentsPrinted = documentsPrinted;
     }
 
-    public LaserPrinter(String printerID) {
-        this.printerID = printerID;
-    }
+
+    public LaserPrinter() {}
 
     @Override
     public synchronized void printDocument(Document document) {
+        // TODO: recheck if we can use wait and notifyAll
         int numPages = document.getNumberOfPages();
         // Assuming it can print a 10 page doc from bother toner and the paper level greater than 10
-        if(numPages < paperLevel & numPages < tonerLevel) {
+        if(numPages < paperLevel && numPages < tonerLevel) {
             paperLevel = this.paperLevel - numPages;
             tonerLevel = this.tonerLevel - numPages;
         }
@@ -40,6 +40,7 @@ public class LaserPrinter implements ServicePrinter{
                 throw new RuntimeException(e);
             }
         }
+        notifyAll();
     }
 
     @Override
@@ -55,6 +56,7 @@ public class LaserPrinter implements ServicePrinter{
         }else {
             paperLevel = this.paperLevel + SheetsPerPack;
         }
+        notifyAll();
     }
 
     public boolean isEligibleToRefill(){

@@ -1,10 +1,10 @@
-public class Student implements Runnable{
+public class Student extends Thread{
     ThreadGroup stuThreadGroup;
     Printer stuPrinter;
     String stuName;
 
     public Student(String name, Printer printer, ThreadGroup threadGroup) {
-        super();
+        super(threadGroup, name);
         this.stuName = name;
         this.stuPrinter = printer;
         // TODO: recheck with the "student" thread group
