@@ -9,10 +9,11 @@ PRINT[i:PrintRange] = (
 
 */
 
-range PrintRange = 0..3
-STUDENT(NUM_DOCS = 3) = PRINT[0],
+const MAX_DOCS = 3
+range PrintRange = 0..MAX_DOCS
+STUDENT(NUM_DOCS = MAX_DOCS) = PRINT[0],
 PRINT[i: PrintRange] = 
 	if (i < NUM_DOCS)
 	then (aquireLock -> print -> releaseLock -> PRINT[i+1])
-	else if (i == 30)
-	then (aquireLock -> print -> releaseLock -> PRINT[i+1]). 
+	//else if (i == 3)
+	else (terminate -> END). 
