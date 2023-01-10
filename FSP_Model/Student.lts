@@ -1,0 +1,18 @@
+
+/*
+range PrintRange = 0..3
+STUDENT(NUM_DOCS = 3) =(aquireLock -> PRINT[0]),
+PRINT[i:PrintRange] = (
+	when(i < NUM_DOCS) aquireLock -> print -> releaseLock -> PRINT[i + 1] |
+	when(i == NUM_DOCS) terminate -> END).
+
+
+*/
+
+range PrintRange = 0..3
+STUDENT(NUM_DOCS = 3) = PRINT[0],
+PRINT[i: PrintRange] = 
+	if (i < NUM_DOCS)
+	then (aquireLock -> print -> releaseLock -> PRINT[i+1])
+	else if (i == 30)
+	then (aquireLock -> print -> releaseLock -> PRINT[i+1]). 
