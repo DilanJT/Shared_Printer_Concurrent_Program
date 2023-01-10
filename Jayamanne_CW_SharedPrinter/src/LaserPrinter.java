@@ -1,9 +1,13 @@
 public class LaserPrinter implements ServicePrinter{
 
+    // TODO: recheck with the explanation related to document
+
     private final String printerID;
     private int paperLevel;
     private int tonerLevel;
     private int documentsPrinted;
+
+    private boolean eligibleToRefill;
     public LaserPrinter(String printerID, int paperLevel, int tonerLevel, int documentsPrinted){
         this.printerID = printerID;
         this.paperLevel = paperLevel;
@@ -26,8 +30,8 @@ public class LaserPrinter implements ServicePrinter{
     }
 
     @Override
-    public void replaceTonerCartridge() {
-        if(this.tonerLevel < Minimum_Toner_Level) {
+    public synchronized void replaceTonerCartridge() {
+        if(isEligibleToReplaceToner()) {
             this.tonerLevel = Full_Toner_Level;
         }else {
             try {
@@ -39,10 +43,10 @@ public class LaserPrinter implements ServicePrinter{
     }
 
     @Override
-    public void refillPaper() {
+    public synchronized void refillPaper() {
         // TODO : check for the divisibility by 50 from the paperLevel
-        int tempPaperLevel = this.paperLevel + SheetsPerPack;
-        if(tempPaperLevel > Full_Paper_Tray) {
+        //int tempPaperLevel = this.paperLevel + SheetsPerPack;
+        if(!isEligibleToRefill()) {
             try {
                 wait(5000);
             } catch (InterruptedException e) {
@@ -50,6 +54,24 @@ public class LaserPrinter implements ServicePrinter{
             }
         }else {
             paperLevel = this.paperLevel + SheetsPerPack;
+        }
+    }
+
+    public boolean isEligibleToRefill(){
+        // TODO: optimize this code
+        if ((paperLevel + SheetsPerPack) <= Full_Paper_Tray) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean isEligibleToReplaceToner() {
+        // TODO: optimize this code
+        if(this.tonerLevel < Minimum_Toner_Level){
+            return true;
+        }else{
+            return false;
         }
     }
 
@@ -62,4 +84,6 @@ public class LaserPrinter implements ServicePrinter{
                 "Documents Printed : " + this.documentsPrinted +
                 "]";
     }
+
+
 }
