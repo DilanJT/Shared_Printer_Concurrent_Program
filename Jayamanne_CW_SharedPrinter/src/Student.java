@@ -34,15 +34,14 @@ public class Student extends Thread{
     @Override
     public void run() {
         Document[] documents = new Document[5];
-        documents[0] = new Document(this.stuName, "Computer science pracitice report", 5);
+        documents[0] = new Document(this.stuName, "Computer science pracitice report", 10);
         documents[1] = new Document(this.stuName, "Database Systems", 5);
-        documents[2] = new Document(this.stuName, "Algo report", 5);
+        documents[2] = new Document(this.stuName, "Algo report", 10);
         documents[3] = new Document(this.stuName, "SDGP report", 5);
         documents[4] = new Document(this.stuName, "OOP report", 5);
         int totalNumPages = 0;
         for (Document document : documents) {
             if (document != null) {
-
 
                 System.out.println(Thread.currentThread().getName() + " trying to print the " + document + " \n");
                 /*
@@ -57,32 +56,7 @@ public class Student extends Thread{
 //                    throw new RuntimeException(e);
 //                }
 
-                /*
-                - if the the student cannot print the docs cus of not enough toner level and paper level
-                 */
-                if (!((LaserPrinter) stuPrinter).isEligibleToPrint(document)) {
-//                    try {
-//                        paperTechnician.join();
-//                    } catch (InterruptedException e) {
-//                        throw new RuntimeException(e);
-//                    }
 
-//                    if(((LaserPrinter)stuPrinter).getPaperLevel() < ((LaserPrinter)stuPrinter).getMaxPaperLevel()) {
-//                        try {
-//                            paperTechnician.join();
-//                        } catch (InterruptedException e) {
-//                            throw new RuntimeException(e);
-//                        }
-//                    }
-
-//                    if(((LaserPrinter)stuPrinter).getTonerLevel() < ((LaserPrinter)stuPrinter).getFullTonerLevel()){
-//                        try {
-//                            tonerTechnician.join();
-//                        } catch (InterruptedException e) {
-//                            throw new RuntimeException(e);
-//                        }
-//                    }
-                }
                 System.out.println("\n Toner Technician state :: " + tonerTechnician.getState());
                 System.out.println("\n Paper Technician state :: " + paperTechnician.getState() + " \n");
 

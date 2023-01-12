@@ -1,9 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class LaserPrinter implements ServicePrinter{
-
-    // TODO: recheck with the explanation related to document
 
     private String printerID;
     private int paperLevel;
@@ -48,7 +45,6 @@ public class LaserPrinter implements ServicePrinter{
             try {
                 System.out.println(Thread.currentThread().getName() +
                         " waiting till toner is replaced or papers are refilled");
-                //waitingThreads.add(Thread.currentThread().getName());
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -63,7 +59,6 @@ public class LaserPrinter implements ServicePrinter{
         }
         System.out.println("printDocument() : " + this);
         System.out.println("------------------- END printDocument() -------------------------\n");
-        //waitingThreads.remove(Thread.currentThread().getName());
         notifyAll();
     }
 
@@ -97,7 +92,6 @@ public class LaserPrinter implements ServicePrinter{
         System.out.println("replaceTonerCartridge() : " + this);
         System.out.println("------------------- END replaceTonerCartridge() -------------------------\n");
 
-        //waitingThreads.remove(Thread.currentThread().getName());
         notifyAll();
     }
 
@@ -127,43 +121,18 @@ public class LaserPrinter implements ServicePrinter{
     }
 
     public boolean isEligibleToRefill(){
-        // TODO: optimize this code
-        if ((paperLevel + SheetsPerPack) <= Full_Paper_Tray) return true;
-        
+
+        return (paperLevel + SheetsPerPack) <= Full_Paper_Tray;
     }
 
     public boolean isEligibleToReplaceToner() {
-        // TODO: optimize this code
-        if(this.tonerLevel < Minimum_Toner_Level){
-            return true;
-        }else{
-            return false;
-        }
+
+        return this.tonerLevel < Minimum_Toner_Level;
     }
 
     public boolean isEligibleToPrint(Document document) {
-        // TODO: optimize this code
         int num_docs = document.getNumberOfPages();
-        if(num_docs < this.paperLevel && num_docs < this.tonerLevel) {
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    public int getPaperLevel() {
-        return paperLevel;
-    }
-
-    public int getMaxPaperLevel() {
-        return Full_Paper_Tray;
-    }
-    public int getTonerLevel(){
-        return tonerLevel;
-    }
-
-    public int getFullTonerLevel() {
-        return Full_Toner_Level;
+        return num_docs < this.paperLevel && num_docs < this.tonerLevel;
     }
 
     public int getTonersReplaced() {
