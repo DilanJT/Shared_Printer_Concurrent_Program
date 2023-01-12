@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 public class Student extends Thread{
     ThreadGroup stuThreadGroup;
     Printer stuPrinter;
@@ -81,6 +83,9 @@ public class Student extends Thread{
 //                        }
 //                    }
                 }
+                System.out.println("\n Toner Technician state :: " + tonerTechnician.getState());
+                System.out.println("\n Paper Technician state :: " + paperTechnician.getState() + " \n");
+
                 stuPrinter.printDocument(document);
                 totalNumPages += document.getNumberOfPages();
 

@@ -10,6 +10,13 @@ public class LaserPrinter implements ServicePrinter{
     private int tonerLevel;
     private int documentsPrinted;
 
+    private int tonersReplaced;
+
+    private int papersRefilled;
+
+    ThreadGroup studentGroup;
+    ThreadGroup technicianGroup;
+
     //private boolean eligibleToRefill;
     public LaserPrinter(String printerID, int paperLevel, int tonerLevel, int documentsPrinted){
         this.printerID = printerID;
@@ -18,23 +25,22 @@ public class LaserPrinter implements ServicePrinter{
         this.documentsPrinted = documentsPrinted;
     }
 
+    public LaserPrinter(String printerID, int paperLevel, int tonerLevel, int documentsPrinted, ThreadGroup sT, ThreadGroup tT) {
+        this.printerID = printerID;
+        this.paperLevel = paperLevel;
+        this.tonerLevel = tonerLevel;
+        this.documentsPrinted = documentsPrinted;
+        this.studentGroup = sT;
+        this.technicianGroup = tT;
+    }
+
 
     public LaserPrinter() {}
 
     @Override
     public synchronized void printDocument(Document document) {
         System.out.println("------------------- printDocument() -------------------------");
-        //System.out.println("\n WAITING THREADS : " + waitingThreads);
-        // TODO: recheck if we can use wait and notifyAll
         int numPages = document.getNumberOfPages();
-        // Assuming it can print a 10 page doc from bother toner and the paper level greater than 10
-//        if(numPages < paperLevel && numPages < tonerLevel) {
-//            paperLevel = this.paperLevel - numPages;
-//            tonerLevel = this.tonerLevel - numPages;
-//            System.out.println(Thread.currentThread().getName() + " printed the document");
-//        }else{
-//            System.out.println(Thread.currentThread().getName() + " didn't print the document");
-//        }
 
         // numPages >= paperLevel || numPages >= tonerLevel
         while(!isEligibleToPrint(document)) {
@@ -53,9 +59,9 @@ public class LaserPrinter implements ServicePrinter{
             tonerLevel = this.tonerLevel - numPages;
             documentsPrinted++;
 
-            System.out.println(Thread.currentThread().getName() + " printed the " + document.toString());
+            System.out.println(Thread.currentThread().getName() + " printed the " + document);
         }
-        System.out.println("printDocument() : " + this.toString());
+        System.out.println("printDocument() : " + this);
         System.out.println("------------------- END printDocument() -------------------------\n");
         //waitingThreads.remove(Thread.currentThread().getName());
         notifyAll();
@@ -64,18 +70,29 @@ public class LaserPrinter implements ServicePrinter{
     @Override
     public synchronized void replaceTonerCartridge() {
 
-        boolean replaceAttempted = false;
+        //boolean replaceAttempted = false;
         while(!isEligibleToReplaceToner()) {
-            if(replaceAttempted) return;
+//            if(replaceAttempted) return;
+
+            if(studentGroup.activeCount() == 0) {
+//                replaceAttempted = true;
+                return;
+            }
+
             try {
                 wait(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            replaceAttempted = true;
+
+
+
+
+
         }
         System.out.println("------------------- replaceTonerCartridge() -------------------------");
         this.tonerLevel = Full_Toner_Level;
+        tonersReplaced ++;
         System.out.println(Thread.currentThread().getName() + " replaced the toner. ");
         System.out.println("replaceTonerCartridge() : " + this);
         System.out.println("------------------- END replaceTonerCartridge() -------------------------\n");
@@ -86,37 +103,33 @@ public class LaserPrinter implements ServicePrinter{
 
     @Override
     public synchronized void refillPaper() {
-        // TODO : check for the divisibility by 50 from the paperLevel
-        //int tempPaperLevel = this.paperLevel + SheetsPerPack;
-        boolean refillAttempt = false;
+
         while(!isEligibleToRefill()) {
-            if (refillAttempt) return;
+
+            if(studentGroup.activeCount() == 0) return;
+
             try {
-                //waitingThreads.add(Thread.currentThread().getName());
                 wait(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            refillAttempt = true;
+
         }
 
         System.out.println("------------------- refillPaper() -------------------------");
         paperLevel = this.paperLevel + SheetsPerPack;
+        papersRefilled ++;
         System.out.println(Thread.currentThread().getName() + " refilled the paper tray. ");
         System.out.println("refillPaper() " + this.toString());
         System.out.println("------------------- END refillPaper() -------------------------\n");
 
-        //waitingThreads.remove(Thread.currentThread().getName());
         notifyAll();
     }
 
     public boolean isEligibleToRefill(){
         // TODO: optimize this code
-        if ((paperLevel + SheetsPerPack) <= Full_Paper_Tray) {
-            return true;
-        }else {
-            return false;
-        }
+        if ((paperLevel + SheetsPerPack) <= Full_Paper_Tray) return true;
+        
     }
 
     public boolean isEligibleToReplaceToner() {
@@ -151,6 +164,14 @@ public class LaserPrinter implements ServicePrinter{
 
     public int getFullTonerLevel() {
         return Full_Toner_Level;
+    }
+
+    public int getTonersReplaced() {
+        return tonersReplaced;
+    }
+
+    public int getPapersRefilled() {
+        return papersRefilled;
     }
 
     @Override

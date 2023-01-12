@@ -1,9 +1,11 @@
 public class PrintingSystem {
     public static void main(String[] args) {
-        ServicePrinter laserPrinter = new LaserPrinter("FP001", 10, 50, 0 );
-
         ThreadGroup studentGroup = new ThreadGroup("student");
         ThreadGroup technicianGroup = new ThreadGroup("technician");
+
+        ServicePrinter laserPrinter = new LaserPrinter("FP001", 10, 50, 0, studentGroup, technicianGroup );
+
+
 
         Thread paperTechnician = new PaperTechnician("PaperTechnician", laserPrinter, technicianGroup);
         Thread tonerTechnician = new TonerTechnician("TonerTechnician", laserPrinter, technicianGroup);

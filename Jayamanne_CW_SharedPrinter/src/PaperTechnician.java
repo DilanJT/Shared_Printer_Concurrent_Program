@@ -22,10 +22,11 @@ public class PaperTechnician extends Thread{
         int num_packs_used = 0;
         int attempts = 3;
         for(int i = 0; i < attempts; i++) {
-            if(((LaserPrinter)paperTechPrinter).isEligibleToRefill()) {
-                num_packs_used += 1;
-            }
+//            if(((LaserPrinter)paperTechPrinter).isEligibleToRefill()) {
+//                num_packs_used += 1;
+//            }
             paperTechPrinter.refillPaper();
+            num_packs_used = ((LaserPrinter)paperTechPrinter).getPapersRefilled();
 
 
             int randomTime = (int)(Math.random() * 1000);
