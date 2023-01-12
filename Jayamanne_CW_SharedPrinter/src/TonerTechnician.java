@@ -18,16 +18,16 @@ public class TonerTechnician extends Thread{
     @Override
     public void run() {
 
-        int num_packs_used = 0;
+        int num_toners_replaced = 0;
         int attempts = 3;
-        for(int i = 0; i < attempts; i++) {
-            if(((LaserPrinter)tonerTechPrinter).isEligibleToReplaceToner()) {
-                num_packs_used += 1;
+        for (int i = 0; i < attempts; i++) {
+            if (((LaserPrinter) tonerTechPrinter).isEligibleToReplaceToner()) {
+                num_toners_replaced += 1;
             }
             tonerTechPrinter.replaceTonerCartridge();
 
 
-            int randomTime = (int)(Math.random() * 1000);
+            int randomTime = (int) (Math.random() * 1000);
             try {
                 Thread.sleep(randomTime);
             } catch (InterruptedException e) {
@@ -36,6 +36,6 @@ public class TonerTechnician extends Thread{
         }
 
         // TODO: try to get the name of the thread from the Thread class
-        System.out.println("Toner Technician Finished, packs of the paper used : " + num_packs_used);
+        System.out.println("Toner Technician Finished, cartridges replaced: " + num_toners_replaced);
     }
 }
