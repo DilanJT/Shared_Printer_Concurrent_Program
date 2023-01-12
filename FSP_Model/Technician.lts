@@ -6,4 +6,4 @@ REFILL[r : 0..NUM_DOCS] = (
 
 
 
-TECHNICIAN1 = (out_of_paper -> getLock -> refill -> releaseLock -> TECHNICIAN1).
+TECHNICIAN1 = (out_of_paper -> getLock -> refill -> releaseLock -> TECHNICIAN1 | terminate -> END).
