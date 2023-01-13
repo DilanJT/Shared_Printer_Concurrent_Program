@@ -33,4 +33,4 @@ PRINT[s : PrintRange] =
 	else if (s == 0)
 	then (aquireLock -> refill -> releaseLock -> PRINT[MAX_SHEETS]),
 
-PRINTDOC[j : 1..3] = (printDoc -> releaseLock -> PRINT[j - 1]).
+PRINTDOC[j : 1..3] = (print -> releaseLock -> PRINT[j - 1]).

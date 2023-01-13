@@ -1,0 +1,283 @@
+"C:\Program Files\Java\jdk1.8.0_311\bin\java.exe" "-javaagent:C:\Users\dilan\IntelliJ IDEA 2022.1.2\lib\idea_rt.jar=54265:C:\Users\dilan\IntelliJ IDEA 2022.1.2\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\Java\jdk1.8.0_311\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_311\jre\lib\rt.jar;D:\dilan_files\IIT\Final Year\concurrent programming\assignment\Shared_Printer\Jayamanne_CW_SharedPrinter\out\production\Jayamanne_CW_SharedPrinter" PrintingSystem
+------------------- refillPaper() -------------------------
+PaperTechnician refilled the paper tray. 
+refillPaper() LaserPrinter[ PrinterID: FP001, PaperLevel: 60, TonerLevel: 50, Documents Printed : 0]
+------------------- END refillPaper() -------------------------
+
+Student03 trying to print the Document[ UserID: Student03, Name: Computer science pracitice report, Pages: 10] 
+
+Student02 trying to print the Document[ UserID: Student02, Name: Computer science pracitice report, Pages: 10] 
+
+Student01 trying to print the Document[ UserID: Student01, Name: Computer science pracitice report, Pages: 10] 
+
+Student04 trying to print the Document[ UserID: Student04, Name: Computer science pracitice report, Pages: 10] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: RUNNABLE 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: RUNNABLE 
+
+
+ Toner Technician state :: TIMED_WAITING
+------------------- printDocument() -------------------------
+
+ Paper Technician state :: RUNNABLE 
+
+Student04 printed the Document[ UserID: Student04, Name: Computer science pracitice report, Pages: 10]
+
+ Paper Technician state :: TIMED_WAITING 
+
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 50, TonerLevel: 40, Documents Printed : 1]
+------------------- END printDocument() -------------------------
+
+------------------- printDocument() -------------------------
+Student01 printed the Document[ UserID: Student01, Name: Computer science pracitice report, Pages: 10]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 40, TonerLevel: 30, Documents Printed : 2]
+------------------- END printDocument() -------------------------
+
+------------------- printDocument() -------------------------
+Student03 printed the Document[ UserID: Student03, Name: Computer science pracitice report, Pages: 10]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 30, TonerLevel: 20, Documents Printed : 3]
+------------------- END printDocument() -------------------------
+
+------------------- printDocument() -------------------------
+Student02 printed the Document[ UserID: Student02, Name: Computer science pracitice report, Pages: 10]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 20, TonerLevel: 10, Documents Printed : 4]
+------------------- END printDocument() -------------------------
+
+Student04 trying to print the Document[ UserID: Student04, Name: Database Systems, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student04 printed the Document[ UserID: Student04, Name: Database Systems, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 15, TonerLevel: 5, Documents Printed : 5]
+------------------- END printDocument() -------------------------
+
+------------------- replaceTonerCartridge() -------------------------
+TonerTechnician replaced the toner. 
+replaceTonerCartridge() : LaserPrinter[ PrinterID: FP001, PaperLevel: 15, TonerLevel: 500, Documents Printed : 5]
+------------------- END replaceTonerCartridge() -------------------------
+
+Student03 trying to print the Document[ UserID: Student03, Name: Database Systems, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student03 printed the Document[ UserID: Student03, Name: Database Systems, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 10, TonerLevel: 495, Documents Printed : 6]
+------------------- END printDocument() -------------------------
+
+Student03 trying to print the Document[ UserID: Student03, Name: Algo report, Pages: 10] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student03 waiting till toner is replaced or papers are refilled
+Student02 trying to print the Document[ UserID: Student02, Name: Database Systems, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student02 printed the Document[ UserID: Student02, Name: Database Systems, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 5, TonerLevel: 490, Documents Printed : 7]
+------------------- END printDocument() -------------------------
+
+Student03 waiting till toner is replaced or papers are refilled
+Student01 trying to print the Document[ UserID: Student01, Name: Database Systems, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student01 waiting till toner is replaced or papers are refilled
+Student04 trying to print the Document[ UserID: Student04, Name: Algo report, Pages: 10] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student04 waiting till toner is replaced or papers are refilled
+------------------- refillPaper() -------------------------
+PaperTechnician refilled the paper tray. 
+refillPaper() LaserPrinter[ PrinterID: FP001, PaperLevel: 55, TonerLevel: 490, Documents Printed : 7]
+------------------- END refillPaper() -------------------------
+
+Student04 printed the Document[ UserID: Student04, Name: Algo report, Pages: 10]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 45, TonerLevel: 480, Documents Printed : 8]
+------------------- END printDocument() -------------------------
+
+Student01 printed the Document[ UserID: Student01, Name: Database Systems, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 40, TonerLevel: 475, Documents Printed : 9]
+------------------- END printDocument() -------------------------
+
+Student03 printed the Document[ UserID: Student03, Name: Algo report, Pages: 10]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 30, TonerLevel: 465, Documents Printed : 10]
+------------------- END printDocument() -------------------------
+
+Student02 trying to print the Document[ UserID: Student02, Name: Algo report, Pages: 10] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student02 printed the Document[ UserID: Student02, Name: Algo report, Pages: 10]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 20, TonerLevel: 455, Documents Printed : 11]
+------------------- END printDocument() -------------------------
+
+Student04 trying to print the Document[ UserID: Student04, Name: SDGP report, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student04 printed the Document[ UserID: Student04, Name: SDGP report, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 15, TonerLevel: 450, Documents Printed : 12]
+------------------- END printDocument() -------------------------
+
+Student03 trying to print the Document[ UserID: Student03, Name: SDGP report, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student03 printed the Document[ UserID: Student03, Name: SDGP report, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 10, TonerLevel: 445, Documents Printed : 13]
+------------------- END printDocument() -------------------------
+
+Student04 trying to print the Document[ UserID: Student04, Name: OOP report, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student04 printed the Document[ UserID: Student04, Name: OOP report, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 5, TonerLevel: 440, Documents Printed : 14]
+------------------- END printDocument() -------------------------
+
+Student03 trying to print the Document[ UserID: Student03, Name: OOP report, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student03 waiting till toner is replaced or papers are refilled
+Student02 trying to print the Document[ UserID: Student02, Name: SDGP report, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student02 waiting till toner is replaced or papers are refilled
+Student01 trying to print the Document[ UserID: Student01, Name: Algo report, Pages: 10] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student01 waiting till toner is replaced or papers are refilled
+------------------- refillPaper() -------------------------
+PaperTechnician refilled the paper tray. 
+refillPaper() LaserPrinter[ PrinterID: FP001, PaperLevel: 55, TonerLevel: 440, Documents Printed : 14]
+------------------- END refillPaper() -------------------------
+
+Student01 printed the Document[ UserID: Student01, Name: Algo report, Pages: 10]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 45, TonerLevel: 430, Documents Printed : 15]
+------------------- END printDocument() -------------------------
+
+Student02 printed the Document[ UserID: Student02, Name: SDGP report, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 40, TonerLevel: 425, Documents Printed : 16]
+------------------- END printDocument() -------------------------
+
+Student03 printed the Document[ UserID: Student03, Name: OOP report, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 35, TonerLevel: 420, Documents Printed : 17]
+------------------- END printDocument() -------------------------
+
+Student02 trying to print the Document[ UserID: Student02, Name: OOP report, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TIMED_WAITING 
+
+------------------- printDocument() -------------------------
+Student02 printed the Document[ UserID: Student02, Name: OOP report, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 30, TonerLevel: 415, Documents Printed : 18]
+------------------- END printDocument() -------------------------
+
+Student02 finished printing: 5 Documents, 35. 
+
+Paper Technician Finished, packs of the paper used : 3
+Student04 finished printing: 5 Documents, 35. 
+
+Student03 finished printing: 5 Documents, 35. 
+
+Student01 trying to print the Document[ UserID: Student01, Name: SDGP report, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TERMINATED 
+
+------------------- printDocument() -------------------------
+Student01 printed the Document[ UserID: Student01, Name: SDGP report, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 25, TonerLevel: 410, Documents Printed : 19]
+------------------- END printDocument() -------------------------
+
+Student01 trying to print the Document[ UserID: Student01, Name: OOP report, Pages: 5] 
+
+
+ Toner Technician state :: TIMED_WAITING
+
+ Paper Technician state :: TERMINATED 
+
+------------------- printDocument() -------------------------
+Student01 printed the Document[ UserID: Student01, Name: OOP report, Pages: 5]
+printDocument() : LaserPrinter[ PrinterID: FP001, PaperLevel: 20, TonerLevel: 405, Documents Printed : 20]
+------------------- END printDocument() -------------------------
+
+Student01 finished printing: 5 Documents, 35. 
+
+Toner Technician Finished, cartridges replaced: 1 
+
+=============== PRINTER STATUS AT THE END ==================
+Printer Status :: LaserPrinter[ PrinterID: FP001, PaperLevel: 20, TonerLevel: 405, Documents Printed : 20]
+
+Process finished with exit code 0
